@@ -1,0 +1,255 @@
+/* Apply Poppins font globally */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #313131;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-100%);
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2,
+.sidebar-header p {
+  margin: 0;
+  font-size: 18px;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  color: white;
+}
+
+.sidebar.closed .sidebar-header h2,
+.sidebar.closed .sidebar-header p {
+  opacity: 0; /* Hide text when sidebar is closed */
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  color: white;
+}
+
+.sidebar.closed .sidebar-nav li {
+  opacity: 0; /* Hide list items when sidebar is closed */
+}
+
+.sidebar-nav li.active {
+  background-color: #7ed957;
+  color: #313131;
+}
+
+.sidebar-nav li:hover {
+  background-color: rgba(126, 217, 87, 0.1);
+}
+
+.sidebar-nav .icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.sidebar-footer {
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar.closed .sidebar-footer {
+  opacity: 0;
+}
+
+/* Buttons */
+.logout-button,
+.burger-menu,
+.back-arrow,
+.desktop-toggle,
+.close-button {
+  background-color: #313131;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease-in-out;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.logout-button:hover,
+.burger-menu:hover,
+.back-arrow:hover,
+.desktop-toggle:hover,
+.close-button:hover {
+  background-color: #7ed957;
+  color: #313131;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.logout-button .icon {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+}
+
+.menu-button,
+.back-button {
+  background-color: #313131;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button:hover,
+.back-button:hover {
+  background-color: #7ed957;
+  transform: scale(1.05);
+}
+
+.close-button {
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  color: #7ed957;
+  transform: rotate(90deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mobile-header {
+    display: flex;
+  }
+
+  .burger-menu {
+    display: flex;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .close-button {
+    display: flex;
+  }
+
+  .sidebar .back-button {
+    display: none;
+  }
+}
+
+/* Overlay */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+@media (min-width: 769px) {
+  .burger-menu,
+  .close-button {
+    display: none;
+  }
+
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
